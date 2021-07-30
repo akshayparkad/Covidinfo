@@ -10,9 +10,6 @@ import Availability from "./components/Availability";
 import Footer from "./components/Footer";
 
 const App = () => {
-
-  
-
   return (
    <div className="container">
     <div>
