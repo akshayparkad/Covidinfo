@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const Alert = () => {
+const Alert0 = () => {
 
   const bgColor = {
     backgroundColor : "#E0F8F7"
@@ -25,4 +25,4 @@ const Alert = () => {
   );
 };
 
-export default Alert;
+export default Alert0;

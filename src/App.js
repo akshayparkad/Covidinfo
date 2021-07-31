@@ -23,7 +23,6 @@ const App = () => {
       <Route path="/pincode" exact component={Search} />
       <Route path="/downloadpdf" exact component={Download} />
       </Switch>
-     
       </div>
       <Footer />
       </Router>

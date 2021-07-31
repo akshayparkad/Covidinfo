@@ -1,13 +1,50 @@
 import React from "react";
-
+import { makeStyles } from '@material-ui/core/styles';
+import { Alert, AlertTitle } from '@material-ui/lab';
+import { Collapse } from '@material-ui/core';
 
 const Results = (props) => {
-  const renderedResults = props.results.map((result) => {
-    const isFree = result.fee_type === "Free";
 
-    return (
-          <div className="container bordercon mt-5">
-            <ol className="list-group mb-5 border border-success">
+  const dis = props.selectedDistrict;
+  const len = props.results.length;
+  const notAvailable = props.results.length === 0 && dis;
+  
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      width: '100%',
+      '& > * + *': {
+        marginTop: theme.spacing(2),
+      },
+    },
+  }));
+
+  const classes = useStyles();
+
+  return (
+    <div className="container mt-5">
+
+    <Collapse in={len}>
+    <div className={classes.root}>
+      <Alert severity="success">
+        <AlertTitle>Found</AlertTitle>
+        Total Vaccination Centers — <strong>{len}</strong>
+      </Alert>
+    </div>
+        </Collapse>
+
+        <Collapse in={notAvailable}>
+    <div className={classes.root}>
+      <Alert severity="warning">
+        <AlertTitle>Not Available</AlertTitle>
+        Vaccination is not available at this time.
+      </Alert>
+    </div>
+        </Collapse>
+
+      <div className="row mt-5">
+        {props.results.map((result) => (
+          <div className="col">
+            <ol className="list-group mb-5">
               <li className="list-group-item d-flex justify-content-between align-items-start">
                 <div className="ms-2 me-auto">
                   <div className="fw-bold">Center Name</div>
@@ -21,7 +58,6 @@ const Results = (props) => {
                   <div className="fw-bold">Center Address</div>
                 </div>
                 <span className="badge bg-light text-dark rounded-pill">
-                  {" "}
                   {result.address}
                 </span>
               </li>
@@ -58,8 +94,8 @@ const Results = (props) => {
                   <div className="fw-bold">Vaccine</div>
                 </div>
                 <span className="badge bg-danger rounded-pill">
-                   {result.vaccine}
-                </span> 
+                  {result.vaccine}
+                </span>
               </li>
 
               <li className="list-group-item d-flex justify-content-between align-items-start">
@@ -68,10 +104,11 @@ const Results = (props) => {
                 </div>
                 <span
                   className={`badge rounded-pill ${
-                    isFree ? "bg-success" : "bg-warning text-dark"
+                    result.fee_type === "Free"
+                      ? "bg-success"
+                      : "bg-warning text-dark"
                   }`}
                 >
-                  {" "}
                   {result.fee_type}
                 </span>
               </li>
@@ -100,10 +137,10 @@ const Results = (props) => {
               </li>
             </ol>
           </div>
-    );
-  });
-
-  return <div> {renderedResults}</div>;
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default Results;

@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Results from "./Results";
-import Alert from "./Alert";
+import Alert0 from "./Alert";
+
 
 const Availability = () => {
   const [states, setStates] = useState([]);
@@ -116,7 +117,7 @@ const Availability = () => {
 
   return (
     <div className="container">
-      <Alert />
+      <Alert0 />
       <form className="ui form">
         <div className="field">
           <label className="label">Date:</label>
@@ -162,7 +163,8 @@ const Availability = () => {
           </div>
         </div>
       </div>
-      <Results results={results} />
+     
+      <Results results={results} selectedDistrict = {selectedDistrict} />
     </div>
   );
 };
