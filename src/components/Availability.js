@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import axios from "axios";
 import Results from "./Results";
 import Alert0 from "./Alert";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 
 
 const Availability = () => {
@@ -14,6 +16,20 @@ const Availability = () => {
   const [date, setDate] = useState("");
   const [results, setResults] = useState([]);
   const ref = useRef();
+
+  const useStyles = makeStyles((theme) => ({
+    container: {
+      display: "flex",
+      flexWrap: "wrap",
+    },
+    textField: {
+      marginLeft: theme.spacing(1),
+      marginRight: theme.spacing(1),
+      width: 200,
+    },
+  }));
+
+  const classes = useStyles();
 
   useEffect(() => {
     const onBodyClick = (event) => {
@@ -63,7 +79,7 @@ const Availability = () => {
 
     const handleStateClick = async () => {
       setSelectedState(state.state_name);
-    
+
       const { data } = await axios.get(
         `https://cdn-api.co-vin.in/api/v2/admin/location/districts/${state.state_id}`,
         {
@@ -96,7 +112,7 @@ const Availability = () => {
           params: {
             "Accept-Language": "en-US",
             district_id: district.district_id,
-            date: date,
+            date: reverseString(date),
           },
         }
       );
@@ -115,23 +131,30 @@ const Availability = () => {
     );
   });
 
+  const reverseString = (str) =>{
+    return str.split("-").reverse().join("-");
+  }
+
+
   return (
     <div className="container">
       <Alert0 />
-      <form className="ui form">
-        <div className="field">
-          <label className="label">Date:</label>
-          <input
-            value={date}
-            type="text"
-            placeholder="Date"
-            onChange={(e) => setDate(e.target.value)}
-          ></input>
-        </div>
-        {/* <button type="submit" className="ui primary button">
-          Submit
-        </button> */}
+      <label className="label"><strong>Select a Date</strong></label>
+      <form className={classes.container} noValidate>
+        
+        <TextField
+          value={date}
+          id="date"
+          type="date"
+          defaultValue="01-08-2021"
+          className={classes.textField}
+          onChange={(e) => setDate(e.target.value)}
+          InputLabelProps={{
+            shrink: true,
+          }}
+        />
       </form>
+
       <div ref={ref} className="ui form">
         <div className="ui field">
           <label className="label">Select a State</label>
@@ -163,8 +186,8 @@ const Availability = () => {
           </div>
         </div>
       </div>
-     
-      <Results results={results} selectedDistrict = {selectedDistrict} />
+
+      <Results results={results} selectedDistrict={selectedDistrict} />
     </div>
   );
 };

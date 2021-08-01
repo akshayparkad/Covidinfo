@@ -4,13 +4,16 @@ import { Link } from "react-router-dom";
 const Header = () => {
 
   const bgColor = {
-    backgroundColor: "#e3f2fd"
+    backgroundColor: "#2E64FE"
   }
   return (
     <div className="container">
-      <nav className="navbar navbar-expand-lg navbar-light" style={bgColor}>
+
+
+
+      <nav className="navbar navbar-expand-lg navbar-light " style={bgColor}>
         <div className="container-fluid">
-          <Link to="/" className="navbar-brand">
+          <Link to="/" className="navbar-brand text-white h1">
             Covid Info
           </Link>
           <button
@@ -27,30 +30,30 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarText">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <Link to="/" className="nav-link" aria-current="page">
-                  Home
+                <Link to="/" className="nav-link text-white" aria-current="page">
+                  Home   |
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/pincode" className="nav-link">
-                  Search by Pincode
+                <Link to="/pincode" className="nav-link text-white">
+                  Search by Pincode |
                 </Link>
               </li>
               <li className="nav-item">
-                <Link to="/certificate" className="nav-link">
-                  Download Vaccine Certificate
-                </Link>
-              </li>
-
-              <li className="nav-item">
-                <Link to="/" className="nav-link">
-                  About
+                <Link to="/certificate" className="nav-link text-white">
+                  Download Vaccine Certificate |
                 </Link>
               </li>
 
               <li className="nav-item">
-                <Link to="/" className="nav-link">
-                  Contact Us
+                <Link to="/" className="nav-link text-white">
+                About |
+                </Link>
+              </li>
+
+              <li className="nav-item">
+                <Link to="/" className="nav-link text-white">
+                  Contact Us |
                 </Link>
               </li>
             </ul>

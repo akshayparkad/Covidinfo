@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const Footer = () => {
 
      const bgColor = {
-         backgroundColor: "#e3f2fd"
+         backgroundColor: "#2E64FE"
      }
 
     
@@ -15,9 +15,9 @@ const Footer = () => {
       <div className="container p-4 pb-0">
       </div>
     
-      <div className="text-center p-3" style={bgColor}>
-        © 2020 Copyright:
-        <Link to ="/" className="text-dark">Covidinfo </Link>
+      <div className="text-center p-3 text-white" style={bgColor}>
+        © 2020 Copyright : 
+        <Link to ="/" className="text-dark text-white"> Covidinfo </Link>
       </div>
     </footer>
       
