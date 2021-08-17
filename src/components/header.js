@@ -7,7 +7,7 @@ const Header = () => {
     backgroundColor: "#2E64FE"
   }
   return (
-    <div className="container">
+    <div className="container mb-4">
 
 
 

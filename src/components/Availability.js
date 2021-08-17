@@ -46,7 +46,7 @@ const Availability = () => {
         capture: true,
       });
     };
-  }, []); //to hide the dropdown when you click outside the component jsx ..used useRef hook
+  }, []); //to hide the dropdown when you click outside the component jsx .used useRef hook
 
   useEffect(() => {
     if (date) {

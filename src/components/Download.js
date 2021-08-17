@@ -1,7 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
+import { makeStyles } from '@material-ui/core/styles';
+import Alert from '@material-ui/lab/Alert';
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    width: '100%',
+    '& > * + *': {
+      marginTop: theme.spacing(2),
+    },
+  },
+}));
 
 const Download = (props) => {
+
+  const classes = useStyles();
+
   const [refId, setRefId] = useState("");
 
   const { token } = (props.location && props.location.state) || {};
@@ -34,9 +48,15 @@ const Download = (props) => {
   };
 
   return (
-    <>
+    <div className="container">
+      
+      <div className={classes.root}>
+      <Alert variant="filled" severity="success">
+        Authentication Successful!
+      </Alert>
+      </div>
+
       <div class="ui success message">
-        <div class="header">Your successfully authenticated.</div>
         <p>Enter your reference Id to download vaccination certificate</p>
       </div>
 
@@ -55,7 +75,7 @@ const Download = (props) => {
           Download Certificate
         </button>
       </form>
-    </>
+    </div>
   );
 };
 
